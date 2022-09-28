@@ -6,81 +6,71 @@ namespace bytebank
   public class CheckingAccount
   {
     public Customer Holder { get; set; }
-    private string _account;
-    private int _agency;
-    public string AgencyName { get; set; }
+    private int Account { get; }
+    private int Agency { get; }
     private double _balance;
+    public int CounterWithDrawNotAllowed { get; private set; }
+    public int CounterTransferNotAllowed { get; private set; }
 
-    public CheckingAccount(Customer holder, string account, int agency, string agencyName)
+    public static int TotalCreatedAccount { get; private set; }
+    public static double OperationalTax { get; private set; }
+
+    public CheckingAccount(Customer holder, int account, int agency)
     {
       Holder = holder;
       Account = account;
       Agency = agency;
-      AgencyName = agencyName;
+      if (account <= 0)
+      {
+        throw new ArgumentException($"{nameof(account)} deve ser diferentes de zero.");
+      }
+
+      if (agency <= 0)
+      {
+        throw new ArgumentException($"{nameof(agency)} deve ser diferentes de zero.");
+      }
+
+      TotalCreatedAccount++;
+      OperationalTax = 30 / TotalCreatedAccount;
     }
 
-
-    public bool withDraw(double value)
+    public void withDraw(double value)
     {
-      if (_balance < value || value < 0)
+      if (_balance < value)
       {
-        return false;
+        CounterWithDrawNotAllowed++;
+        throw new NotEnoughBalanceException(_balance, value);
+      }
+      if (value < 0)
+      {
+        CounterWithDrawNotAllowed++;
+        throw new ArgumentException("Valor do saque não pode ser negativo", nameof(value));
       }
       _balance = _balance - value;
-      return true;
     }
 
-    public bool deposit(double value)
+    public void deposit(double value)
     {
       if (value < 0)
       {
-        return false;
+        throw new ArgumentException("Valor do depósito não pode ser negativo!");
       }
       _balance += value;
-      return true;
     }
 
-    public bool transfer(double value, CheckingAccount destiny)
+    public void transfer(double value, CheckingAccount destiny)
     {
 
-      if (_balance < value || value < 0)
+      try
       {
-        return false;
+        withDraw(value);
       }
-
-      _balance -= value;
-      destiny._balance += value;
-      return true;
-    }
-    public string Account
-    {
-      get
+      catch (NotEnoughBalanceException ex)
       {
-        return _account;
+        CounterTransferNotAllowed++;
+        throw new FinantialOperationExcepetion($"Operação não realizada{ex}");
       }
-      set
-      {
-        if (value == null)
-        {
-          return;
-        }
-        _account = value;
-      }
-    }
-    public int Agency
-    {
-      get
-      {
-        return _agency;
-      }
-      set
-      {
-        if (value <= 0)
-        {
-          return;
-        }
-        _agency = value;
-      }
+      destiny.deposit(value);
     }
     public double Balance
     {
@@ -88,7 +78,7 @@ namespace bytebank
       {
         return _balance;
       }
-      set
+      private set
       {
         if (value < 0)
         {

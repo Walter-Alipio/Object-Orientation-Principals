@@ -14,13 +14,68 @@ public class Program
 
     CheckingAccount account1 = new CheckingAccount(
       customer1,
-      "12345-2",
-      23,
-      "Agencia central"
+      123452,
+      23
       );
 
-    System.Console.WriteLine(account1);
+    Customer customer2 = new Customer("Maria",
+      "12442113",
+      "Mercenária");
+
+    try
+    {
+      CheckingAccount account2 = new CheckingAccount(
+        customer2,
+        232322,
+        33
+      );
+
+      account2.deposit(150);
+    }
+    catch (ArgumentException err)
+    {
+      System.Console.WriteLine(err.StackTrace);
+      System.Console.WriteLine(err.Message);
+      System.Console.WriteLine(err.ParamName);
+    }
+    catch (FinantialOperationExcepetion ex)
+    {
+      System.Console.WriteLine(ex.Message);
+      System.Console.WriteLine(ex.StackTrace);
+
+      System.Console.WriteLine("Exceção do tipo INNER EXCEPTION (exceção interna)");
+
+      System.Console.WriteLine(ex.InnerException.Message);
+      System.Console.WriteLine(ex.InnerException.StackTrace);
+    }
+
+    LoadAccounts();
+    System.Console.WriteLine(account1.ToString());
+    Console.ReadKey();
+  }
+
+  private static void LoadAccounts()
+  {
+    ReadFiles file = null;
+    try
+    {
+      file = new ReadFiles("contas.txt");
+      file.ReadNextLine();
+      file.ReadNextLine();
+      file.ReadNextLine();
+    }
+    catch (FileNotFoundException ex)
+    {
+      System.Console.WriteLine(ex.Message);
+    }
+    catch (IOException ex)
+    {
+      System.Console.WriteLine(ex.Message);
+    }
+    finally
+    {
+      if (file != null)
+        file.Close();
+    }
   }
 }
-
-//Console.ReadKey();
