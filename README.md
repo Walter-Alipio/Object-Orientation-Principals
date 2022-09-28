@@ -10,3 +10,12 @@ Através da criação do sistema interno para o banco fictício Byte Bank, o pro
 - Polimorfismo
 - Classes e métodos abstratos
 - Interfaces
+
+### Finalizando a formação OO em C#
+
+Na última parte da formação, foram apresentadas possíveis exceções e seus tratamentos.
+
+- try/catch
+- StackTracer
+- InnerException
+- finaly
