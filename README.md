@@ -11,7 +11,7 @@ Através da criação do sistema interno para o banco fictício Byte Bank, o pro
 - Classes e métodos abstratos
 - Interfaces
 
-### Finalizando a formação OO em C#
+### ✔️ Finalizando a formação OO em C#
 
 Na última parte da formação, foram apresentadas possíveis exceções e seus tratamentos.
 
@@ -19,3 +19,11 @@ Na última parte da formação, foram apresentadas possíveis exceções e seus 
 - StackTracer
 - InnerException
 - finaly
+
+#### Trabalhando com collections
+
+O projeto bytebank_ATENDIMENTO apresenta um projeto console mais completo, com telas de apresentação e maior interação do usuário. Nesse projeto estou trabalhando com:
+
+- Array
+- ArrayList
+- List<T>
