@@ -27,3 +27,4 @@ O projeto bytebank_ATENDIMENTO apresenta um projeto console mais completo, com t
 - Array
 - ArrayList
 - List<T>
+- LINQ
