@@ -20,8 +20,9 @@ namespace bytebankIO
       //   escritor.WriteLine(4545454545);
       // }
 
-      EscritaBinaria();
-      LeituraBinaria();
+      // EscritaBinaria();
+      // LeituraBinaria();
+      UsarStreamDeEntrada();
       System.Console.WriteLine("Aplicação finalizada...");
       Console.ReadLine();
     }
