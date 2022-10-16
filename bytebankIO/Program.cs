@@ -10,7 +10,7 @@ namespace bytebankIO
   {
     static void Main(string[] args)
     {
-      CriandoArquivosComWriter();
+      TestaEscrita();
       Console.ReadLine();
     }
   }

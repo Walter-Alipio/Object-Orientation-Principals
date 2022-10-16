@@ -27,6 +27,22 @@ namespace bytebankIO
         escritor.Write("446, 65465, 456.0, Pedro");
       }
     }
-  }
 
+    static void TestaEscrita()
+    {
+      string caminhoNovoArquivo = "teste.txt";
+
+      using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+      using (var escritor = new StreamWriter(fluxoDeArquivo))
+      {
+        for (int i = 0; i < 1000000; i++)
+        {
+          escritor.WriteLine($"Linha: {i}");
+          escritor.Flush();//Despeja o buffer no Stream
+          System.Console.WriteLine($"Linha {i} foi escrita no arquivo. Tecle enter...");
+          Console.ReadLine();
+        }
+      }
+    }
+  }
 }
