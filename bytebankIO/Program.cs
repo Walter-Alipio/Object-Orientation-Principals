@@ -10,7 +10,19 @@ namespace bytebankIO
   {
     static void Main(string[] args)
     {
-      TestaEscrita();
+      // string caminhoNovoArquivo = "contasExportadas.csv";
+
+      // using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+      // using (var escritor = new StreamWriter(fluxoDeArquivo))
+      // {
+      //   escritor.WriteLine(true);
+      //   escritor.WriteLine(false);
+      //   escritor.WriteLine(4545454545);
+      // }
+
+      EscritaBinaria();
+      LeituraBinaria();
+      System.Console.WriteLine("Aplicação finalizada...");
       Console.ReadLine();
     }
   }
