@@ -7,9 +7,9 @@ namespace bytebankIO
       using (var fs = new FileStream("contaCorrente.txt", FileMode.Create))
       using (var escritor = new BinaryWriter(fs))//BinaryWtrite para escrever de forma binária
       {
-        escritor.Write(546);            //número da agência
-        escritor.Write(546544);         //número da conta
-        escritor.Write(4000.50);        //saldo
+        escritor.Write(546);               //número da agência
+        escritor.Write(546544);           //número da conta
+        escritor.Write(4000.50);         //saldo
         escritor.Write("Gustavo Braga");
       }
     }

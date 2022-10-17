@@ -28,3 +28,16 @@ O projeto bytebank_ATENDIMENTO apresenta um projeto console mais completo, com t
 - ArrayList
 - List<T>
 - LINQ
+
+##### Manipulando arquivos
+
+Leitura e escrita de arquivos(I/O) .txt e .csv.<br>
+Trabalhamos como criar uma lista de clientes no sistema a partir de um arquivo .txt e como criar um relatório .csv com esses dados.
+
+- FileStream
+- Buffer
+- Encoding
+- BinaryReader
+- BinaryWriter
+- Flush()
+- partial Class
