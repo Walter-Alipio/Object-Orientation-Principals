@@ -22,7 +22,21 @@ namespace bytebankIO
 
       // EscritaBinaria();
       // LeituraBinaria();
-      UsarStreamDeEntrada();
+      //UsarStreamDeEntrada();
+
+      var linhas = File.ReadAllLines("contas.txt");
+      System.Console.WriteLine(linhas.Length);
+
+      // foreach (var linha in linhas)
+      // {
+      //   System.Console.WriteLine(linha);
+      // }
+
+      var byteArquivo = File.ReadAllBytes("contas.txt");
+      System.Console.WriteLine($"Arquivo contas.txt possui {byteArquivo.Length} bytes.");
+
+      File.WriteAllText("escrevendoComClasseFile.txt", "Testando File.WriteAllText")
+
       System.Console.WriteLine("Aplicação finalizada...");
       Console.ReadLine();
     }
